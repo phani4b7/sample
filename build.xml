@@ -1,0 +1,46 @@
+<project name="PQM.jar" default="build-jar" basedir=".">
+
+<!--
+##########################################################
+                Classpath setting
+##########################################################-->
+<!--<path id="classpath">
+<fileset dir="${basedir}/lib">
+<include name="*.jar"/>
+</fileset>
+</path>-->
+<!--
+###########################################################
+              Clean and Create the directories
+###########################################################-->
+
+<target name="clean">
+   <delete dir="${basedir}/classes"/>
+   <delete dir="${basedir}/PQM.Jar"/>
+    </target>
+	
+<target name="mkdir" depends="clean">
+ <mkdir dir="${basedir}/classes"/>
+ <mkdir dir="${build}" />
+ </target>
+<!--
+###########################################################
+                  Compilation of code
+#############################################################-->
+
+<target name="compile"  depends="mkdir">
+  <javac destdir="${basedir}/classes" srcdir="${basedir}/src">
+       <!--<classpath refid="classpath"/>-->
+  </javac>
+</target>
+<!--
+###########################################################
+                  Creating PQM.Jar 
+#############################################################-->
+
+<target name="build-jar" depends="compile">
+   <jar destfile="${basedir}/PQM.jar"
+      basedir="${build}"/>
+       
+</target>
+</project>
